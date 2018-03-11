@@ -13,30 +13,30 @@
 Class Recommender{
 
 	/**
-	 * @var array $dataset        It contains array of dataset and feed by contructor while creating object.
-	 * @var string $algorithm It contains name of algorithm to be used.
-	 */
+   * @var array $dataset        It contains array of dataset and feed by contructor while creating object.
+   * @var string $algorithm It contains name of algorithm to be used.
+   */
 	public $dataset,$algorithm;
 
 	/**
-	 * Collect dataset and algorithm
-	 * @param array $dataset take dataset to be set to dataset property
-	 *
-	 * @param array $algorithm take dataset to be set to algorithm property
-	 */
+	* Collect dataset and algorithm
+	* @param array $dataset take dataset to be set to dataset property
+	*
+	* @param array $algorithm take dataset to be set to algorithm property
+	*/
 	public function __construct($dataset, $algorithm='pearson_correlation'){
 		$this->dataset = $dataset;
 		$this->algorithm = $algorithm;
 	}
 
 	/**
-	 * Uses Euclidean algorith to calculate distance score of two person.
-	 *
-	 * @param string $person1 Name of first person
-	 * @param string $person2 Name of second person
-	 *
-	 * @return float Returns the float value between 0 to 1.
-	 */
+	* Uses Euclidean algorith to calculate distance score of two person.
+	*
+	* @param string $person1 Name of first person
+	* @param string $person2 Name of second person
+	*
+	* @return float Returns the float value between 0 to 1.
+	*/
 	public function euclidean($person1, $person2){
 
 		# Finding Euclidean distance 
@@ -58,13 +58,13 @@ Class Recommender{
 	}
 
 	/**
-	 * Uses person Correlation algorith. Gives a value between -1 to 1. A value 1 means both users are having the same taste in all most all cases.
-	 *
-	 * @param string $person1 Name of first person
-	 * @param string $person2 Name of second person
-	 *
-	 * @return float Returns float value between -1 to 1.
-	 */
+	* Uses person Correlation algorith. Gives a value between -1 to 1. A value 1 means both users are having the same taste in all most all cases.
+	*
+	* @param string $person1 Name of first person
+	* @param string $person2 Name of second person
+	*
+	* @return float Returns float value between -1 to 1.
+	*/
 	public function pearson_correlation($person1, $person2){
 		# To get both rated items
 		$both_rated = [];
@@ -120,13 +120,13 @@ Class Recommender{
 	}
 
 	/**
-	 * Evaluate the similar users for specific person.
-	 *
-	 * @param string $person Name of person
-	 * @param int $number_of_users Number of similar persons
-	 *
-	 * @return array Return the number_of_users (similar persons) for a given specific person
-	 */
+	* Evaluate the similar users for specific person.
+	*
+	* @param string $person Name of person
+	* @param int $number_of_users Number of similar persons
+	*
+	* @return array Return the number_of_users (similar persons) for a given specific person
+	*/
 	public function similarUsers($person, $number_of_users=4){
 		$scores = [];
 		foreach ($this->dataset as $otherperson => $value) {
@@ -147,13 +147,13 @@ Class Recommender{
 	}
 
 	/**
-	 * Gets recommendations for a person by using a weighted average of every other user's rankings
-	 *
-	 * @param string $person String person with whom similarity is being checked
-	 * @param int $number_of_items Integer number_of_items to be returned
-	 *
-	 * @return array Returns the array of items which person may like.
-	 */
+	* Gets recommendations for a person by using a weighted average of every other user's rankings
+	*
+	* @param string $person String person with whom similarity is being checked
+	* @param int $number_of_items Integer number_of_items to be returned
+	*
+	* @return array Returns the array of items which person may like.
+	*/
 	public function recommend($person,$number_of_items = null){
 		$totals = [];
 		$simSums = [];

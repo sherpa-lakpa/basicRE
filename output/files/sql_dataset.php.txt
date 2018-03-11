@@ -31,18 +31,17 @@ while($row1 = mysql_fetch_assoc($r1)){
 // print_r($array);
 
 
-$recommend = new Recommender($array);
+$recommend = new Recommender;
 
-$uname = 'Niklaus Wirth';
-echo "<h1>User - {$uname}</h1>";
+
 echo '<h1>Similiar Users</h1>';
-$similarUsers = $recommend->similarUsers($uname);
+$similarUsers = $recommend->similarUsers($array,'Niklaus Wirth');
 foreach ($similarUsers as $user => $probabilty) {
 	echo $user.' with probabilty - '.round($probabilty, 2).'<br>';
 }
 
 echo '<h1>Recommended Movies</h1>';
-$recommend = $recommend->recommend($uname);
+$recommend = $recommend->recommend($array,'Niklaus Wirth');
 foreach ($recommend as $key => $value) {
 	echo ++$key.') '.$books[$key].'<br>';
 }
